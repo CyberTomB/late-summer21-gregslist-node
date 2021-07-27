@@ -1,5 +1,6 @@
 import { ProxyState } from '../AppState.js'
 import { jobsService } from '../Services/JobsService.js'
+import Job from '../Models/Job.js'
 
 function _draw() {
   let template = ''
@@ -19,13 +20,13 @@ export default class JobsController {
     event.preventDefault()
     const form = event.target
     const rawJob = {
-      jobTitle: form.title.value,
+      title: form.title.value,
       description: form.description.value,
       rate: parseInt(form.pay.value),
       hours: form.payType.value,
       company: form.company.value
     }
-    jobsService.createJob(rawJob)
+    jobsService.createJob(new Job(rawJob))
     form.reset()
   }
 
