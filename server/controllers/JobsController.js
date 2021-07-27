@@ -9,7 +9,6 @@ export class JobsController extends BaseController {
       .get('/:id', this.getById)
       .post('', this.create)
       .put('/:id', this.edit)
-      .put('/:id/bid', this.bid)
       .delete('/:id', this.destroy)
   }
 
