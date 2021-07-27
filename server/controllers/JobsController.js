@@ -1,4 +1,5 @@
 import { jobsService } from '../services/JobsService'
+import BaseController from '../utils/BaseController'
 
 export class JobsController extends BaseController {
   constructor() {
@@ -21,12 +22,22 @@ export class JobsController extends BaseController {
     }
   }
 
-  getById(arg0, getById) {
-    throw new Error('Method not implemented.')
+  async getById(req, res, next) {
+    try {
+      const job = await jobsService.getById(req.params.id)
+      res.send(job)
+    } catch (error) {
+      next(error)
+    }
   }
 
-  create(arg0, create) {
-    throw new Error('Method not implemented.')
+  async create(req, res, next) {
+    try {
+      const job = await jobsService.create(req.body)
+      res.send(job)
+    } catch (error) {
+      next(error)
+    }
   }
 
   edit(arg0, edit) {

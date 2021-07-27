@@ -10,7 +10,7 @@ class CarsService {
   async getById(id) {
     const car = await dbContext.Cars.findById(id)
     if (!car) {
-      throw new BadRequest('Invalid Id')
+      throw new BadRequest('Invalid ID')
     }
     return car
   }
