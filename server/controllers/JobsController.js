@@ -40,15 +40,23 @@ export class JobsController extends BaseController {
     }
   }
 
-  edit(arg0, edit) {
-    throw new Error('Method not implemented.')
+  async edit(req, res, next) {
+    try {
+      req.body.id = req.params.id
+      delete req.body.price
+      const job = await jobsService.edit(req.body)
+      res.send(job)
+    } catch (error) {
+      next(error)
+    }
   }
 
-  bid(arg0, bid) {
-    throw new Error('Method not implemented.')
-  }
-
-  destroy(arg0, destroy) {
-    throw new Error('Method not implemented.')
+  async destroy(req, res, next) {
+    try {
+      await jobsService.destroy(req.params.id)
+      res.send({ message: 'Successfully Annihilated Job' })
+    } catch (error) {
+      next(error)
+    }
   }
 }
